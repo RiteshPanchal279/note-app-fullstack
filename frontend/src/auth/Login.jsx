@@ -37,6 +37,8 @@ const Login = () => {
       });
       if (res.data.success) {
         dispatch(setUser(res.data.user))
+        localStorage.setItem('user', JSON.stringify(res.data.user)); // Save user info in localStorage
+        localStorage.setItem('token', res.data.token); // Save the token
         navigate("/");
         toast.success(res.data.message);
       }
@@ -46,13 +48,7 @@ const Login = () => {
     } finally {
       dispatch(setLoading(false));
     }
-
   } 
-  useEffect(()=>{
-    if(user){
-      navigate('/')
-    }
-  },[])
 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen gap-5 font-mono  ">
