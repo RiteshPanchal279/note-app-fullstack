@@ -13,6 +13,7 @@ const app = express();
 app.use(cookieParser());
 const corsOptions = {
    origin: "https://note-app-frontend-delta.vercel.app",
+   methods: ["GET", "POST", "PUT", "DELETE"],
    credentials: true,
  };
  app.use(cors(corsOptions));
