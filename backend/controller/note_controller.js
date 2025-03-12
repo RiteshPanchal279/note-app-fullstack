@@ -3,8 +3,8 @@ import { Note } from "../models/notes_model.js";
 export const addNote = async (req,res)=>{
 
    try {
-      const {text}=req.body;
-      const userId = req.id;// Authenticated user ID
+      const {text,id}=req.body;
+      const userId = id;// Authenticated user ID
 
       if(!text){
          return res.status(400).json({
@@ -30,10 +30,15 @@ export const addNote = async (req,res)=>{
 
 export const getNote = async(req,res)=>{
    try {
-      const userId = req.id;// Authenticated user ID
+      // const userId = req.id;// Authenticated user ID
+      const body =req.body;
+      console.log("body of get note",body)
+      const userId=body.user._id;
+      // console.log(userId)
 
       // Find all notes created by the logged-in user
-      const notes = await Note.find({ user: userId }).sort({ date: -1 }); // Sort by latest
+      // const notes = await Note.find({ user: userId }).sort({ date: -1 }); // Sort by latest
+      const notes =await Note.find({user:userId}).sort({date:-1});
 
       return res.status(200).json({
          message: "Notes fetched successfully",

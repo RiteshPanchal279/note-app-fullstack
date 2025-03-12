@@ -8,11 +8,12 @@ import { NOTE_API_END_POINT } from "../utils/constant";
 
 const NoteList = () => {
   const dispatch = useDispatch();
+  const user=JSON.parse(localStorage.getItem('user')) || null
 
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const res = await axios.get(`${NOTE_API_END_POINT}/getnote`, {
+        const res = await axios.post(`${NOTE_API_END_POINT}/getnote`, {user},{
           withCredentials: true,
         });
         if (res.data.success) {

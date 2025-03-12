@@ -11,7 +11,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toggle = useSelector((state) => state.note.toggleBtn);
-  const user = useSelector((state) => state.auth);
+  const user =localStorage.getItem('user')
 
   const handleLogout = async ()=>{
     try {
@@ -20,6 +20,7 @@ const Navbar = () => {
       });
       if(res.data.success){
         dispatch(setUser(null))
+        localStorage.removeItem('user')
         navigate('/user/login')
       }
     } catch (error) {
@@ -34,6 +35,7 @@ const Navbar = () => {
         NOTE
       </h1>
       <div className="flex gap-3">
+      {/* {JSON.stringify(user)} */}
         {!user ? (
           <>
             <button
