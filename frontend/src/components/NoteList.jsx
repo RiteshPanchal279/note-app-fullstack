@@ -23,7 +23,7 @@ const NoteList = () => {
       }
     };
     fetchNote();
-  }, [dispatch]);
+  }, []);
 
   const notes = useSelector((store) => store.note.notes);
   const searchText = useSelector((state) => state.note.searchText);
