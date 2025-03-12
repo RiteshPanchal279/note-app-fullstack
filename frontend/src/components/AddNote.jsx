@@ -9,12 +9,13 @@ const AddNote = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
   const charLimit = 200;
+  const user=JSON.parse(localStorage.getItem('user')) || null
 
   const handleAdd =  async(e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${NOTE_API_END_POINT}/addnote`,{text},{
+      const res = await axios.post(`${NOTE_API_END_POINT}/addnote`,{text,id:user?._id},{
         headers: {
           "Content-Type": "application/json",
         },
