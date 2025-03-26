@@ -129,17 +129,7 @@ const Signp = () => {
           </div>
         </div>
 
-        <div>
-          <p className="text-center text-[13px]">
-            already have an account?
-            <a
-              className="text-blue-400 underline text-[15px]"
-              href="/user/login"
-            >
-              Login
-            </a>
-          </p>
-        </div>
+        
 
         <div type="submit" className="flex items-center justify-center">
           {loading ? (
@@ -152,6 +142,19 @@ const Signp = () => {
             </button>
           )}
         </div>
+
+        <div>
+          <p className="text-center text-[13px]">
+            already have an account?
+            <a
+              className="text-blue-400 underline text-[15px]"
+              href="/user/login"
+            >
+              Login
+            </a>
+          </p>
+        </div>
+
       </form>
     </div>
   );

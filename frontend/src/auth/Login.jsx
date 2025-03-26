@@ -94,17 +94,7 @@ const Login = () => {
           </div>
         </div>
 
-        <div>
-          <p className="text-center text-[13px]">
-            New user?
-            <a
-              className="text-blue-400 underline text-[15px]"
-              href="/user/register"
-            >
-              SignUp
-            </a>
-          </p>
-        </div>
+        
 
         <div type="submit" className="flex items-center justify-center">
           {loading ? (
@@ -117,6 +107,19 @@ const Login = () => {
             </button>
           )}
         </div>
+
+        <div>
+          <p className="text-center text-[13px]">
+            New user?
+            <a
+              className="text-blue-400 underline text-[15px]"
+              href="/user/register"
+            >
+              SignUp
+            </a>
+          </p>
+        </div>
+
       </form>
     </div>
   );
