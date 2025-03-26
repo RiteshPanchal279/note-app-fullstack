@@ -23,7 +23,7 @@ const AddNote = () => {
 
         if(res.data.success){
           dispatch(addNote(res.data.note))
-          toast.success(res.data.success)
+          toast.success(res.data.message)
         }
     } catch (error) {
       toast.error("Error adding note.");

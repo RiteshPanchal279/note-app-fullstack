@@ -1,7 +1,12 @@
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./auth/Login";
 import Signp from "./auth/Signp";
+import { Toaster } from "sonner";
 
 const ProtectedRoute = ({ element }) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -27,6 +32,7 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <>
+      <Toaster richColors position="top-right" />
       <RouterProvider router={appRouter} />
     </>
   );
