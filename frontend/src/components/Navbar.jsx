@@ -31,28 +31,28 @@ const Navbar = () => {
 
   return (
     <div className="flex items-center justify-between mb-4">
-      <h1 className={`text-4xl ${toggle ? "text-white " : "text-black"}`}>
-        NOTE
+      <h1 className={`text-5xl font-bold  ${toggle ? "text-white " : "text-black"}`}>
+        My Note
       </h1>
       <div className="flex gap-3">
       {/* {JSON.stringify(user)} */}
         {!user ? (
           <>
             <button
-              className="border px-3 bg-gray-400 rounded-lg hover:scale-[1.1] transition duration-300 ease-in-out"
+              className="border px-3 bg-blue-400 rounded-lg cursor-pointer hover:scale-[1.1] transition duration-300 ease-in-out"
               onClick={() => navigate("/user/login")}
             >
               Login
             </button>
             <button
-              className="border px-3 bg-gray-400 rounded-lg hover:scale-[1.1] transition duration-300 ease-in-out"
+              className="border px-3 bg-blue-400 rounded-lg  cursor-pointer hover:scale-[1.1] transition duration-300 ease-in-out"
               onClick={() => navigate("/user/register")}
             >
               Sing Up
             </button>
           </>
         ) : (
-          <button className="border px-3 bg-gray-400 rounded-lg hover:scale-[1.1] transition duration-300 ease-in-out" onClick={handleLogout}>
+          <button className="border-2 px-3 font-semibold rounded-lg shadow-2xl bg-blue-400 hover:scale-[1.1] transition cursor-pointer duration-300 ease-in-out" onClick={handleLogout}>
             Logout
           </button>
         )}
