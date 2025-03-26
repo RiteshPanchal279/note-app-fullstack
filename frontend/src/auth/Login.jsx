@@ -4,28 +4,25 @@ import { FaRegEye } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setLoading, setUser } from "../store/authSlice";
-import {USER_API_END_POINT} from "../utils/constant.js"
+import { USER_API_END_POINT } from "../utils/constant.js";
 import axios from "axios";
 import { toast } from "sonner";
-
-
-
-
 
 const Login = () => {
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
-  const {loading,user} = useSelector(store=>store.auth)
+  const [toggleEye, setToggleEye] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, user } = useSelector((store) => store.auth);
 
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit=async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       dispatch(setLoading(true));
@@ -36,9 +33,9 @@ const Login = () => {
         withCredentials: true,
       });
       if (res.data.success) {
-        dispatch(setUser(res.data.user))
-        localStorage.setItem('user', JSON.stringify(res.data.user)); // Save user info in localStorage
-        localStorage.setItem('token', res.data.token); // Save the token
+        dispatch(setUser(res.data.user));
+        localStorage.setItem("user", JSON.stringify(res.data.user)); // Save user info in localStorage
+        localStorage.setItem("token", res.data.token); // Save the token
         navigate("/");
         toast.success(res.data.message);
       }
@@ -48,12 +45,17 @@ const Login = () => {
     } finally {
       dispatch(setLoading(false));
     }
-  } 
+  };
 
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen gap-5 font-mono  ">
-      <h1 className="text-4xl sm:text-5xl text-blue-600 font-extrabold">My Note</h1>
-      <form onSubmit={handleSubmit} className="rounded-2xl flex flex-col p-5 gap-3 shadow-2xl px-10 sm:min-w-[540px]">
+      <h1 className="text-4xl sm:text-5xl text-blue-600 font-extrabold">
+        My Note
+      </h1>
+      <form
+        onSubmit={handleSubmit}
+        className="rounded-2xl flex flex-col p-5 gap-3 shadow-2xl px-10 sm:min-w-[540px]"
+      >
         <h2 className="text-center text-2xl font-semibold">Login</h2>
         <div className="flex flex-col">
           <label className="text-xl pb-1" htmlFor="email">
@@ -76,7 +78,7 @@ const Login = () => {
           </label>
           <div className="flex items-center bg-gray-300 rounded justify-between ">
             <input
-              type="password"
+              type={!toggleEye?"password":"text"}
               required
               name="password"
               className="px-4 bg-gray-300 outline-none py-2 rounded "
@@ -84,7 +86,11 @@ const Login = () => {
               onChange={changeEventHandler}
               placeholder="Enter password..."
             />
-            <FaRegEyeSlash className="mr-2 size-4 cursor-pointer" />
+            {!toggleEye ? (
+              <FaRegEyeSlash className="mr-2 size-4 cursor-pointer" onClick={()=>setToggleEye(true)} />
+            ) : (
+              <FaRegEye className="mr-2 size-4 cursor-pointer" onClick={()=>setToggleEye(false)} />
+            )}
           </div>
         </div>
 
@@ -101,13 +107,15 @@ const Login = () => {
         </div>
 
         <div type="submit" className="flex items-center justify-center">
-        {
-                loading?(<button className="text-center bg-blue-500 px-4 py-1 rounded-full cursor-pointer">
-                  Place Wait
-                </button>):(<button className="text-center bg-blue-500 px-4 py-1 rounded-full cursor-pointer">
-                  Login
-                </button>)
-              }
+          {loading ? (
+            <button className="text-center bg-blue-500 px-4 py-1 rounded-full cursor-pointer">
+              Place Wait
+            </button>
+          ) : (
+            <button className="text-center bg-blue-500 px-4 py-1 rounded-full cursor-pointer">
+              Login
+            </button>
+          )}
         </div>
       </form>
     </div>

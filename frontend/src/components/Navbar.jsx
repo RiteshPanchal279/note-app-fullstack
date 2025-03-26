@@ -58,7 +58,7 @@ const Navbar = () => {
         )}
 
         <button
-          className={`border-2 px-3 py-1 rounded-full ${
+          className={`border-2 cursor-pointer px-3 py-1 rounded-full ${
             toggle ? "text-white " : "text-black"
           }   `}
           onClick={() => {
