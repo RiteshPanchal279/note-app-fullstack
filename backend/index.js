@@ -11,12 +11,8 @@ dotenv.config(); // Load environment variables
 const app = express();
 
 app.use(cookieParser());
-// const corsOptions = {
-//    origin: "https://note-app-frontend-delta.vercel.app",
-//    methods: ["GET", "POST", "PUT", "DELETE"],
-//    credentials: true,
-//  };
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+app.use(cors());
 app.use(express.json()); // Middleware to parse JSON request bodies
 
 // Home route
