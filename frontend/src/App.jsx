@@ -9,7 +9,15 @@ import Signp from "./auth/Signp";
 import { Toaster } from "sonner";
 
 const ProtectedRoute = ({ element }) => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  let user = null;
+  try {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      user = JSON.parse(storedUser);
+    }
+  } catch (err) {
+    console.error("Invalid JSON in localStorage:", err);
+  }
 
   return user ? element : <Navigate to="/user/login" replace />;
 };
